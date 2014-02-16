@@ -1,12 +1,10 @@
 package Catalyst::Plugin::SimpleMessage;
 
 {
-  $Catalyst::Plugin::SimpleMessage::VERSION = '0.0.1';
+  $Catalyst::Plugin::SimpleMessage::VERSION = '0.0.2';
 }
 
-use strict;
-use warnings;
- 
+use strictures 1;
  
 =head1 NAME
  
@@ -108,7 +106,7 @@ sub sm_get_messages {
     
     if($token && (ref($self->session->{$conf->{session_prefix}}->{$token}) eq 'ARRAY')) {
         my $searray = delete $self->session->{$conf->{session_prefix}}->{$token};
-        push($self->stash->{$conf->{stash_prefix}}, @$searray);
+        push(@{ $self->stash->{$conf->{stash_prefix}} }, @$searray);
     }
     
     return $self->stash->{$conf->{stash_prefix}};
@@ -132,7 +130,7 @@ sub sm_get_token_param {
 
 Send messages through the session and return a token. You can send multiple messages:
 
-    my $token = $c->sm_session({ message => 'Product added with success', type => 'success' }, { message => 'You must define a price before selling', type => 'warning' })
+    my $token = $c->sm_session({ message => 'Product added with success', type => 'success' }, { message => 'You must define a price before selling', type => 'warning' });
     $c->response->redirect($c->uri_for($self->action_for('list'), { $c->sm_get_token_param() => $token }));
 
 =head2 sm_session
@@ -159,7 +157,7 @@ sub sm_set_messages_session {
 
 Send messages through the stash. You can send multiple messages:
 
-    my $token = $c->sm_stash({ message => 'You account is active', type => 'info' }, { message => 'You do not have credit', type => 'danger' })
+    my $token = $c->sm_stash({ message => 'You account is active', type => 'info' }, { message => 'You do not have credit', type => 'danger' });
 
 Messages sent through stash will be available only for the current request.
 

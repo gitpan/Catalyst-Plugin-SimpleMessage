@@ -19,9 +19,21 @@ my %WriteMakefileArgs = (
   "EXE_FILES" => [],
   "LICENSE" => "perl",
   "NAME" => "Catalyst::Plugin::SimpleMessage",
-  "PREREQ_PM" => {},
-  "TEST_REQUIRES" => {},
-  "VERSION" => "0.0.1",
+  "PREREQ_PM" => {
+    "strictures" => 1
+  },
+  "TEST_REQUIRES" => {
+    "Catalyst" => 0,
+    "Catalyst::Controller" => 0,
+    "Catalyst::Test" => 0,
+    "Moose" => 0,
+    "Test::More" => 0,
+    "lib" => 0,
+    "namespace::autoclean" => 0,
+    "strict" => 0,
+    "warnings" => 0
+  },
+  "VERSION" => "0.0.2",
   "test" => {
     "TESTS" => "t/*.t"
   }

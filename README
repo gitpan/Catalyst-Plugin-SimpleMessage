@@ -1,7 +1,7 @@
 
 
 This archive contains the distribution Catalyst-Plugin-SimpleMessage,
-version 0.0.1:
+version 0.0.2:
 
   Handle passing multiple types of messages between screens of a web application using session or stash.
 
